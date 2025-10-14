@@ -170,6 +170,9 @@ M.extract_highlights_co = function(bufnr)
         highlights[row] = line
     end)
     co.defer_co()
+    if not api.nvim_buf_is_valid(bufnr) then
+        return {}
+    end
 
     local fold = require("neominimap.map.fold")
     local coord = require("neominimap.map.coord")
@@ -204,6 +207,9 @@ M.extract_highlights_co = function(bufnr)
         end
     end)
     co.defer_co()
+    if not api.nvim_buf_is_valid(bufnr) then
+        return {}
+    end
 
     co.for_co(1, minimap_height, 1, 5000, function(y)
         for x = 1, minimap_width do
@@ -211,6 +217,9 @@ M.extract_highlights_co = function(bufnr)
         end
     end)
     co.defer_co()
+    if not api.nvim_buf_is_valid(bufnr) then
+        return {}
+    end
 
     ---@type Neominimap.MinimapHighlight[]
     local ret = {}
