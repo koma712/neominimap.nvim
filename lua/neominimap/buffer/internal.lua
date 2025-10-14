@@ -86,6 +86,9 @@ M.internal_render_co = function(bufnr)
     end
 
     co.defer_co()
+    if not api.nvim_buf_is_valid(bufnr) then
+        return
+    end
 
     local tabwidth = vim.bo[bufnr].tabstop
 
@@ -94,6 +97,9 @@ M.internal_render_co = function(bufnr)
     local minimap = text.gen_co(lines, tabwidth)
 
     co.defer_co()
+    if not api.nvim_buf_is_valid(bufnr) then
+        return
+    end
 
     vim.bo[mbufnr_].modifiable = true
 
@@ -104,6 +110,9 @@ M.internal_render_co = function(bufnr)
     vim.bo[mbufnr_].modifiable = false
 
     co.defer_co()
+    if not api.nvim_buf_is_valid(bufnr) then
+        return
+    end
 
     vim.api.nvim_exec_autocmds("User", {
         group = "Neominimap",
@@ -119,6 +128,9 @@ M.internal_render_co = function(bufnr)
         local highlights = treesitter.extract_highlights_co(bufnr)
 
         co.defer_co()
+        if not api.nvim_buf_is_valid(bufnr) then
+            return
+        end
 
         treesitter.apply_co(mbufnr_, highlights)
         logger.log.trace("Treesitter diagnostics for buffer %d generated successfully", bufnr)
