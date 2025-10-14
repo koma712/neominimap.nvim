@@ -1,5 +1,13 @@
 # Changelog
 
+## [3.15.4](https://github.com/Isrothy/neominimap.nvim/compare/v3.15.3...v3.15.4) (2025-10-14)
+
+
+### Bug Fixes
+
+* Error in coroutine ([57f4ae4](https://github.com/Isrothy/neominimap.nvim/commit/57f4ae40cdf03d354a3ad93a5bed17ccea21ed3f))
+* Error in coroutine ([8029872](https://github.com/Isrothy/neominimap.nvim/commit/80298727e495a3e2a7e5d4243533c734fc66ccae))
+
 ## [3.15.3](https://github.com/Isrothy/neominimap.nvim/compare/v3.15.2...v3.15.3) (2025-09-24)
 
 
