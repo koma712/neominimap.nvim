@@ -35,6 +35,13 @@ M.should_generate_minimap = function(bufnr)
     local var = require("neominimap.variables")
     local filetype = vim.bo[bufnr].filetype
     local buftype = vim.bo[bufnr].buftype
+    local bufname = vim.api.nvim_buf_get_name(bufnr)
+    local ext = vim.fn.fnamemodify(bufname, ":e"):lower()
+    local img_exts = { "png", "jpg", "jpeg", "gif", "webp", "avif", "svg", "ico", "bmp" }
+    if vim.tbl_contains(img_exts, ext) then
+        logger.log.trace("Buffer %d should not generate minimap due to image extension %s", bufnr, ext)
+        return false
+    end
     if not var.g.enabled then
         logger.log.trace("Neominimap is disabled. Skipping generation of minimap for buffer %d", bufnr)
         return false
